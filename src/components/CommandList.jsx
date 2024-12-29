@@ -57,7 +57,7 @@ const CommandList = ({ commands, title, type }) => {
                 isIconOnly
                 className="opacity-0 group-hover:opacity-100 transition-opacity bg-content4/50 hover:bg-content4"
                 size="sm"
-                onClick={() => copyToClipboard(command, index)}
+                onPress={() => copyToClipboard(command, index)}
                 aria-label="Copy command"
               >
                 {copiedIndex === index ? (

@@ -94,7 +94,7 @@ const SpawnGenerator = () => {
                 color="primary"
                 variant="solid"
                 startContent={<FileUp />}
-                onClick={handleFileSelect}
+                onPress={handleFileSelect}
                 isDisabled={loading}
               >
                 Select Manifest File
@@ -104,7 +104,7 @@ const SpawnGenerator = () => {
                   color="secondary"
                   variant="solid"
                   startContent={<Download />}
-                  onClick={handleExport}
+                  onPress={handleExport}
                 >
                   Export
                 </Button>
