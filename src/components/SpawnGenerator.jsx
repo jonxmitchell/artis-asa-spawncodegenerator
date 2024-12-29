@@ -74,8 +74,8 @@ const SpawnGenerator = () => {
   };
 
   return (
-    <div className="p-4 max-w-6xl mx-auto">
-      <Card className="mb-6">
+    <div className="p-1 max-w-6xl mx-auto">
+      <Card className="mb-3">
         <CardBody>
           <div className="flex flex-col items-center gap-4">
             <h1 className="text-2xl font-bold mb-4">

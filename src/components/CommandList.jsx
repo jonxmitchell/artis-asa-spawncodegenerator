@@ -28,7 +28,7 @@ const CommandList = ({ commands, title, type }) => {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
+    <div className="h-[calc(66vh-13px)] flex flex-col py-4]">
       <div className="flex items-center justify-between mb-4">
         <Input
           className="w-64"
