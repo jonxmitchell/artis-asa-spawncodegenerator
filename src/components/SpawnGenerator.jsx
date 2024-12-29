@@ -206,7 +206,7 @@ const SpawnGenerator = () => {
             startContent={<CreditCard className="w-4 h-4" />}
             size="sm"
           >
-            PayPal
+            Donate via PayPal
           </Button>
         </div>
       </div>
