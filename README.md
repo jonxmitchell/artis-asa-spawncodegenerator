@@ -95,12 +95,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - This project was inspired by Andreas Hagström's [SpawnCodeGenerator](https://github.com/andreashagstrom/SpawnCodeGenerator) for ARK: Survival Evolved
-
-## Contact
-
-- Discord: arti.artificial
-- GitHub: [Your GitHub Profile](https://github.com/yourusername)
-
----
-
-Made with ❤️ by arti.artificial
