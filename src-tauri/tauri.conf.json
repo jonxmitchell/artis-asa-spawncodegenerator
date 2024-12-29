@@ -56,11 +56,11 @@
 	  "windows": [
 		{
 		  "title": "Arti's ASA SpawnCodeGenerator (v0.0.1)",
-		  "width": 1300,
+		  "width": 900,
 		  "height": 900,
 		  "minWidth": 900,
-		  "minHeight": 600,
-		  "resizable": true,
+		  "minHeight": 900,
+		  "resizable": false,
 		  "fullscreen": false,
 		  "visible": true,
 		  "decorations": true,
