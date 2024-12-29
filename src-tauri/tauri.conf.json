@@ -1,68 +1,73 @@
 {
 	"$schema": "../node_modules/@tauri-apps/cli/schema.json",
 	"build": {
-		"beforeBuildCommand": "npm run build",
-		"beforeDevCommand": "npm run dev",
-		"devPath": "http://localhost:3000",
-		"distDir": "../out"
+	  "beforeBuildCommand": "npm run build",
+	  "beforeDevCommand": "npm run dev",
+	  "devPath": "http://localhost:3000",
+	  "distDir": "../out"
 	},
 	"package": {
-		"productName": "artis-asa-spawncodegenerator",
-		"version": "0.1.0"
+	  "productName": "artis-asa-spawncodegenerator",
+	  "version": "0.1.0"
 	},
 	"tauri": {
-		"allowlist": {
-			"all": false
+	  "allowlist": {
+		"all": false,
+		"dialog": {
+		  "all": true
 		},
-		"bundle": {
-			"active": true,
-			"category": "DeveloperTool",
-			"copyright": "",
-			"deb": {
-				"depends": []
-			},
-			"externalBin": [],
-			"icon": ["icons/icon.ico"],
-			"identifier": "com.artis-asa-spawncodegenerator",
-			"longDescription": "",
-			"macOS": {
-				"entitlements": null,
-				"exceptionDomain": "",
-				"frameworks": [],
-				"providerShortName": null,
-				"signingIdentity": null
-			},
-
-			"resources": [],
-			"shortDescription": "",
-			"targets": "all",
-			"windows": {
-				"certificateThumbprint": null,
-				"digestAlgorithm": "sha256",
-				"timestampUrl": ""
-			}
+		"clipboard": {
+		  "all": true
+		}
+	  },
+	  "bundle": {
+		"active": true,
+		"category": "DeveloperTool",
+		"copyright": "",
+		"deb": {
+		  "depends": []
 		},
-		"security": {
-			"csp": null
+		"externalBin": [],
+		"icon": ["icons/icon.ico"],
+		"identifier": "com.artis-asa-spawncodegenerator",
+		"longDescription": "",
+		"macOS": {
+		  "entitlements": null,
+		  "exceptionDomain": "",
+		  "frameworks": [],
+		  "providerShortName": null,
+		  "signingIdentity": null
 		},
-		"updater": {
-			"active": false
-		},
-		"windows": [
-			{
-				"title": "Arti's ASA SpawnCodeGenerator (v0.0.1)",
-				"width": 1300,
-				"height": 900,
-				"minWidth": 900,
-				"minHeight": 600,
-				"resizable": true,
-				"fullscreen": false,
-				"visible": true,
-				"decorations": true,
-				"transparent": false,
-				"center": true,
-				"theme": "Dark"
-			}
-		]
+		"resources": [],
+		"shortDescription": "",
+		"targets": "all",
+		"windows": {
+		  "certificateThumbprint": null,
+		  "digestAlgorithm": "sha256",
+		  "timestampUrl": ""
+		}
+	  },
+	  "security": {
+		"csp": null
+	  },
+	  "updater": {
+		"active": false
+	  },
+	  "windows": [
+		{
+		  "title": "Arti's ASA SpawnCodeGenerator (v0.0.1)",
+		  "width": 1300,
+		  "height": 900,
+		  "minWidth": 900,
+		  "minHeight": 600,
+		  "resizable": true,
+		  "fullscreen": false,
+		  "visible": true,
+		  "decorations": true,
+		  "transparent": false,
+		  "center": true,
+		  "theme": "Dark"
+		}
+	  ]
 	}
-}
+  }
