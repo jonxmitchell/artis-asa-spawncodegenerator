@@ -1,6 +1,6 @@
 [package]
 name = "Artis-ASA-SpawnCodeGenerator"
-version = "0.0.1"
+version = "1.0.0"
 description = "A desktop application to generate spawn codes for ASA mods"
 authors = ["you"]
 license = ""
