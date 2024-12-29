@@ -5,10 +5,10 @@ use std::path::Path;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SpawnCommands {
-    engram_names: Vec<String>,
-    item_spawncodes: Vec<String>,
-    creature_spawncodes: Vec<String>,
-    tamed_creature_spawncodes: Vec<String>,
+    pub engram_names: Vec<String>,
+    pub item_spawncodes: Vec<String>,
+    pub creature_spawncodes: Vec<String>,
+    pub tamed_creature_spawncodes: Vec<String>,
 }
 
 pub struct SpawnGenerator;

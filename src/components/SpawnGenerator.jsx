@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
-import { open } from "@tauri-apps/api/dialog";
+import { open, save } from "@tauri-apps/api/dialog";
 import { Tabs, Tab, Card, CardBody, Button, Spinner } from "@nextui-org/react";
-import { FileUp } from "lucide-react";
+import { FileUp, Download } from "lucide-react";
 import CommandList from "./CommandList";
 
 const SpawnGenerator = () => {
@@ -49,6 +49,30 @@ const SpawnGenerator = () => {
     }
   };
 
+  const handleExport = async () => {
+    if (!commands) return;
+
+    try {
+      const savePath = await save({
+        filters: [
+          {
+            name: "Text File",
+            extensions: ["txt"],
+          },
+        ],
+      });
+
+      if (savePath) {
+        await invoke("save_commands_to_file", {
+          path: savePath,
+          commands: commands,
+        });
+      }
+    } catch (err) {
+      setError("Failed to export commands: " + err.message);
+    }
+  };
+
   return (
     <div className="p-4 max-w-6xl mx-auto">
       <Card className="mb-6">
@@ -57,15 +81,27 @@ const SpawnGenerator = () => {
             <h1 className="text-2xl font-bold mb-4">
               ARK: Survival Ascended Spawn Code Generator
             </h1>
-            <Button
-              color="primary"
-              variant="solid"
-              startContent={<FileUp />}
-              onClick={handleFileSelect}
-              isDisabled={loading}
-            >
-              Select Manifest File
-            </Button>
+            <div className="flex gap-4">
+              <Button
+                color="primary"
+                variant="solid"
+                startContent={<FileUp />}
+                onClick={handleFileSelect}
+                isDisabled={loading}
+              >
+                Select Manifest File
+              </Button>
+              {commands && (
+                <Button
+                  color="secondary"
+                  variant="solid"
+                  startContent={<Download />}
+                  onClick={handleExport}
+                >
+                  Export Commands
+                </Button>
+              )}
+            </div>
             {manifestPath && (
               <p className="text-sm text-gray-500">
                 Selected file: {manifestPath}
