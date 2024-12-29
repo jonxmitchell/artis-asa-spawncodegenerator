@@ -128,7 +128,7 @@ const SpawnGenerator = () => {
       {commands && !loading && (
         <Card>
           <CardBody>
-            <Tabs aria-label="Spawn Commands">
+            <Tabs aria-label="Spawn Commands" fullWidth>
               <Tab key="engrams" title="Engrams">
                 <CommandList
                   commands={commands.engram_names}
