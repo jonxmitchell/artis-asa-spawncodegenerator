@@ -1,8 +1,6 @@
-# Arti'sARK: Survival Ascended Spawn Code Generator
+# Arti's ARK: Survival Ascended Spawn Code Generator
 
 A desktop application built with Tauri + Next.js that generates spawn codes for ARK: Survival Ascended mods. This tool helps mod developers and server administrators easily generate and manage spawn codes for items, creatures, and engrams.
-
-![Application Screenshot](/screenshots/app-screenshot.png)
 
 ## Features
 
