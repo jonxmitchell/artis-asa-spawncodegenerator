@@ -98,7 +98,7 @@ const SpawnGenerator = () => {
                   startContent={<Download />}
                   onClick={handleExport}
                 >
-                  Export Commands
+                  Export
                 </Button>
               )}
             </div>
