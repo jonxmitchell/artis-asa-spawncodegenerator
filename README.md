@@ -28,7 +28,7 @@ A desktop application built with Tauri + Next.js that generates spawn codes for 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/artis-asa-spawncodegenerator.git
+git clone https://github.com/jonxmitchell/artis-asa-spawncodegenerator.git
 cd artis-asa-spawncodegenerator
 ```
 
