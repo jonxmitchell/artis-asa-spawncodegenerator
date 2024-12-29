@@ -18,7 +18,10 @@
 		},
 		"clipboard": {
 		  "all": true
-		}
+		},
+		"shell": {
+          "open": true
+      }
 	  },
 	  "bundle": {
 		"active": true,

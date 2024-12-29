@@ -3,8 +3,16 @@
 import React, { useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import { open, save } from "@tauri-apps/api/dialog";
-import { Tabs, Tab, Card, CardBody, Button, Spinner } from "@nextui-org/react";
-import { FileUp, Download } from "lucide-react";
+import {
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  Button,
+  Spinner,
+  Link,
+} from "@nextui-org/react";
+import { FileUp, Download, Coffee, CreditCard } from "lucide-react";
 import CommandList from "./CommandList";
 
 const SpawnGenerator = () => {
@@ -161,6 +169,47 @@ const SpawnGenerator = () => {
           </CardBody>
         </Card>
       )}
+
+      {/* Credits and Donation Section */}
+      <div className="mt-4 text-center">
+        <p className="text-sm text-gray-400 mb-2">
+          Developed by{" "}
+          <Link
+            href="https://discord.gg/sGgerkNSWQ"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary"
+          >
+            arti.artificial
+          </Link>
+        </p>
+        <div className="flex justify-center gap-4">
+          <Button
+            as={Link}
+            href="https://ko-fi.com/artiartificial"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="flat"
+            color="warning"
+            startContent={<Coffee className="w-4 h-4" />}
+            size="sm"
+          >
+            Buy me a coffee
+          </Button>
+          <Button
+            as={Link}
+            href="https://paypal.me/jonlbmitchell"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="flat"
+            color="primary"
+            startContent={<CreditCard className="w-4 h-4" />}
+            size="sm"
+          >
+            PayPal
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };
