@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import { Button, ScrollShadow, Input } from "@nextui-org/react";
-import { Copy, CheckCircle2, Search } from "lucide-react";
+import { Button, ScrollShadow, Input, Tooltip } from "@nextui-org/react";
+import { Copy, CheckCircle2, Search, FileCode2 } from "lucide-react";
 import { writeText } from "@tauri-apps/api/clipboard";
 
 const CommandList = ({ commands, title, type }) => {
   const [copiedIndex, setCopiedIndex] = React.useState(null);
+  const [copiedBlueprintIndex, setCopiedBlueprintIndex] = React.useState(null);
   const [searchQuery, setSearchQuery] = React.useState("");
   const [filteredCommands, setFilteredCommands] = React.useState(commands);
 
@@ -25,6 +26,24 @@ const CommandList = ({ commands, title, type }) => {
     } catch (err) {
       console.error("Failed to copy:", err);
     }
+  };
+
+  const extractAndCopyBlueprint = async (command, index) => {
+    try {
+      const blueprintMatch = command.match(/Blueprint'\/[^']+'/);
+      if (blueprintMatch) {
+        const blueprint = blueprintMatch[0];
+        await writeText(blueprint);
+        setCopiedBlueprintIndex(index);
+        setTimeout(() => setCopiedBlueprintIndex(null), 2000);
+      }
+    } catch (err) {
+      console.error("Failed to copy blueprint:", err);
+    }
+  };
+
+  const shouldShowBlueprintButton = (command) => {
+    return command.includes("Blueprint'/");
   };
 
   return (
@@ -53,19 +72,40 @@ const CommandList = ({ commands, title, type }) => {
               <code className="text-sm flex-1 break-all mr-4 font-mono">
                 {command}
               </code>
-              <Button
-                isIconOnly
-                className="opacity-0 group-hover:opacity-100 transition-opacity bg-content4/50 hover:bg-content4"
-                size="sm"
-                onPress={() => copyToClipboard(command, index)}
-                aria-label="Copy command"
-              >
-                {copiedIndex === index ? (
-                  <CheckCircle2 className="w-4 h-4 text-success" />
-                ) : (
-                  <Copy className="w-4 h-4" />
+              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                {shouldShowBlueprintButton(command) && (
+                  <Tooltip content="Copy Blueprint Path">
+                    <Button
+                      isIconOnly
+                      className="bg-content4/50 hover:bg-content4"
+                      size="sm"
+                      onPress={() => extractAndCopyBlueprint(command, index)}
+                      aria-label="Copy blueprint path"
+                    >
+                      {copiedBlueprintIndex === index ? (
+                        <CheckCircle2 className="w-4 h-4 text-success" />
+                      ) : (
+                        <FileCode2 className="w-4 h-4" />
+                      )}
+                    </Button>
+                  </Tooltip>
                 )}
-              </Button>
+                <Tooltip content="Copy Full Command">
+                  <Button
+                    isIconOnly
+                    className="bg-content4/50 hover:bg-content4"
+                    size="sm"
+                    onPress={() => copyToClipboard(command, index)}
+                    aria-label="Copy command"
+                  >
+                    {copiedIndex === index ? (
+                      <CheckCircle2 className="w-4 h-4 text-success" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </Button>
+                </Tooltip>
+              </div>
             </div>
           ))}
 
