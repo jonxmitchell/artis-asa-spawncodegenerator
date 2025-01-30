@@ -20,7 +20,7 @@ pub async fn save_commands_to_file(path: String, commands: SpawnCommands) -> Res
 
     writeln!(
         file,
-        "Generated Spawn Commands for ARK: Survival Ascended\n"
+        "Generated Spawn Commands for ARK: Survival Ascended - Developed by Arti\n"
     )
     .map_err(|e| e.to_string())?;
 
