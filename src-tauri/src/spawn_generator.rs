@@ -9,6 +9,7 @@ pub struct SpawnCommands {
     pub item_spawncodes: Vec<String>,
     pub creature_spawncodes: Vec<String>,
     pub tamed_creature_spawncodes: Vec<String>,
+    pub buff_blueprints: Vec<String>,
 }
 
 pub struct SpawnGenerator;
@@ -20,7 +21,7 @@ impl SpawnGenerator {
 
     pub fn generate_spawn_commands(&self, manifest_path: &Path) -> io::Result<SpawnCommands> {
         let blueprint_entries = self.parse_manifest_file(manifest_path)?;
-        let (engram_entries, item_entries, creature_entries) =
+        let (engram_entries, item_entries, creature_entries, buff_entries) =
             self.filter_relevant_entries(&blueprint_entries);
 
         let mut commands = SpawnCommands {
@@ -28,6 +29,7 @@ impl SpawnGenerator {
             item_spawncodes: Vec::new(),
             creature_spawncodes: Vec::new(),
             tamed_creature_spawncodes: Vec::new(),
+            buff_blueprints: Vec::new(),
         };
 
         // Process engram names
@@ -86,6 +88,20 @@ impl SpawnGenerator {
             commands.tamed_creature_spawncodes.push(tamed_command);
         }
 
+        // Process buff blueprints
+        for entry in &buff_entries {
+            let blueprint_path = entry
+                .replace("ShooterGame/Mods/", "")
+                .replace("Content/", "")
+                .replace(".uasset", "");
+            let buff_name = Path::new(&blueprint_path)
+                .file_name()
+                .and_then(|n| n.to_str())
+                .unwrap_or_default();
+            let buff_blueprint = format!("Blueprint'/{blueprint_path}.{buff_name}'");
+            commands.buff_blueprints.push(buff_blueprint);
+        }
+
         Ok(commands)
     }
 
@@ -111,10 +127,11 @@ impl SpawnGenerator {
     fn filter_relevant_entries(
         &self,
         entries: &[String],
-    ) -> (Vec<String>, Vec<String>, Vec<String>) {
+    ) -> (Vec<String>, Vec<String>, Vec<String>, Vec<String>) {
         let mut engram_entries = Vec::new();
         let mut item_entries = Vec::new();
         let mut creature_entries = Vec::new();
+        let mut buff_entries = Vec::new();
 
         for entry in entries {
             if entry.contains("EngramEntry") {
@@ -123,9 +140,11 @@ impl SpawnGenerator {
                 item_entries.push(entry.clone());
             } else if entry.contains("Character_BP") {
                 creature_entries.push(entry.clone());
+            } else if entry.contains("/Buffs/") && entry.contains("Buff_") {
+                buff_entries.push(entry.clone());
             }
         }
 
-        (engram_entries, item_entries, creature_entries)
+        (engram_entries, item_entries, creature_entries, buff_entries)
     }
 }

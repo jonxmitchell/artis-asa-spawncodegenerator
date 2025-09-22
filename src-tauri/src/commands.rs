@@ -44,5 +44,10 @@ pub async fn save_commands_to_file(path: String, commands: SpawnCommands) -> Res
         writeln!(file, "{}", cmd).map_err(|e| e.to_string())?;
     }
 
+    writeln!(file, "\n--- Buff Blueprint Paths ---").map_err(|e| e.to_string())?;
+    for cmd in commands.buff_blueprints {
+        writeln!(file, "{}", cmd).map_err(|e| e.to_string())?;
+    }
+
     Ok(())
 }

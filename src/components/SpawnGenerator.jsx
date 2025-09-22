@@ -239,6 +239,23 @@ const SpawnGenerator = () => {
                 type="tamed"
               />
             </Tab>
+            <Tab
+              key="buffs"
+              title={
+                <div className="flex items-center gap-2">
+                  <span>Buffs</span>
+                  <span className="text-xs bg-default-100 px-2 py-1 rounded-full">
+                    {commands.buff_blueprints.length}
+                  </span>
+                </div>
+              }
+            >
+              <CommandList
+                commands={commands.buff_blueprints}
+                title="Buff Blueprint Paths"
+                type="buff"
+              />
+            </Tab>
           </Tabs>
         </CardBody>
       </Card>
